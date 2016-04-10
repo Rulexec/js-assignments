@@ -55,7 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    return `Hello, ${John} ${lastName}!`;
+    return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -209,7 +209,7 @@ function getRectangleString(width, height) {
       (new Array(height - 2)).fill('│' + ' '.repeat(width - 2) + '│')
     ).concat([
       '└' + line + '┘'
-    ]).join('\n');
+    ]).join('\n') + '\n';;
 }
 
 
@@ -237,7 +237,7 @@ function encodeToRot13(str) {
       N = Z - A + 1;
 
   return Array.prototype.map.call(str, function(char) {
-    let c = char.charcodeAt(0);
+    let c = char.charCodeAt(0);
 
     if (A <= c && c <= Z) c = A + (c - A + 13) % N;
     else if (a <= c && c <= z) c = a + (c - a + 13) % N;
@@ -297,7 +297,7 @@ function getCardId(value) {
   // actually, it's better to precompute whole map for performance
   let n = {'A': 0, '1': 9, 'J': 10, 'Q': 11, 'K': 12}[a];
 
-  if (n === undefined) n = n.charCodeAt(0) - '0'.charCodeAt(0) - 1;
+  if (n === undefined) n = a.charCodeAt(0) - '0'.charCodeAt(0) - 1;
 
   return (suit * 13) + n;
 }

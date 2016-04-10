@@ -22,7 +22,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    throw new Error('Not implemented');
+  return value1 + value2;
 }
 
 
@@ -38,7 +38,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-    throw new Error('Not implemented');
+  return value.length;
 }
 
 /**
@@ -55,7 +55,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    throw new Error('Not implemented');
+    return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -69,7 +69,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    throw new Error('Not implemented');
+  return value.substring(7, value.length - 1);
 }
 
 
@@ -84,7 +84,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    throw new Error('Not implemented');
+  return value[0];
 }
 
 /**
@@ -99,7 +99,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    throw new Error('Not implemented');
+  return value.trim();
 }
 
 /**
@@ -114,7 +114,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-    throw new Error('Not implemented');
+  return value.repeat(count);
 }
 
 /**
@@ -130,7 +130,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    throw new Error('Not implemented');
+  return str.replace(value, '');
 }
 
 /**
@@ -145,7 +145,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    throw new Error('Not implemented');
+  return str.substring(1, str.length - 1);
 }
 
 
@@ -160,7 +160,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-    throw new Error('Not implemented');
+  return str.toUpperCase();
 }
 
 /**
@@ -174,7 +174,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-    throw new Error('Not implemented');
+  return str.split(';');
 }
 
 /**
@@ -201,7 +201,15 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+  let line = '─'.repeat(width - 2);
+
+  return [
+      '┌' + line + '┐'
+    ].concat(
+      (new Array(height - 2)).fill('│' + ' '.repeat(width - 2) + '│')
+    ).concat([
+      '└' + line + '┘'
+    ]).join('\n') + '\n';;
 }
 
 
@@ -221,7 +229,21 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
+  let A = 'A'.charCodeAt(0),
+      Z = 'Z'.charCodeAt(0),
+      a = 'a'.charCodeAt(0),
+      z = 'z'.charCodeAt(0),
+
+      N = Z - A + 1;
+
+  return Array.prototype.map.call(str, function(char) {
+    let c = char.charCodeAt(0);
+
+    if (A <= c && c <= Z) c = A + (c - A + 13) % N;
+    else if (a <= c && c <= z) c = a + (c - a + 13) % N;
+
+    return String.fromCharCode(c);
+  }).join('');
 }
 
 /**
@@ -238,7 +260,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    throw new Error('Not implemented');
+  return (typeof value === 'string') || (value instanceof String);
 }
 
 
@@ -267,7 +289,17 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+  let a = value[0],
+      suit = value[value.length - 1];
+
+  suit = {'♣': 0, '♦': 1, '♥': 2, '♠': 3}[suit];
+
+  // actually, it's better to precompute whole map for performance
+  let n = {'A': 0, '1': 9, 'J': 10, 'Q': 11, 'K': 12}[a];
+
+  if (n === undefined) n = a.charCodeAt(0) - '0'.charCodeAt(0) - 1;
+
+  return (suit * 13) + n;
 }
 
 

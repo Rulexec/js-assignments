@@ -54,7 +54,11 @@ function getCicleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return value1 + (value2 - value1) / 2;
+  if (value1 > 0 && value2 < 0 || value1 < 0 && value2 > 0) {
+    return (value1 + value2) / 2;
+  } else {
+    return Math.min(value1, value2) + Math.abs(value2 - value1) / 2;
+  }
 }
 
 /**
@@ -111,7 +115,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-  return Math.atan(y1 / x1) - Math.atan(y2 / x2);
+  return Math.atan(y2 / x2) - Math.atan(y1 / x1);
 }
 
 /**
@@ -181,7 +185,7 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  let t = Math.pow(num, pow);
+  let t = Math.pow(10, pow);
 
   return Math.round(num / t) * t;
 }

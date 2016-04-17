@@ -78,29 +78,7 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-  let diff = endDate - startDate;
-
-  let diffs = [1000, 60, 60, 24].reduce((acc, x) => {
-    let part = acc.time % x;
-    
-    acc.result.unshift(part);
-    acc.time = (acc.time / x) | 0;
-
-    return acc;
-  }, {time: diff, result: []}).result;
-
-  // prepend leading zeroes: f(4)(42) = '0042'
-  function f(k) { return (n) => {
-    // return require('left-pad')(n, k, 0);
-    n = n.toString();
-    let d = k - n.length;
-
-    if (d > 0) n = (new Array(d)).fill('0').join('') + n;
-
-    return n;
-  }; }
-
-  return `${diffs.slice(0, 3).map(f(2)).join(':')}.${f(3)(diffs[3])}`;
+  return new Date(endDate - startDate).toISOString().slice(11, -1);
 }
 
 
@@ -121,8 +99,8 @@ function angleBetweenClockHands(date) {
   let hours = date.getUTCHours(),
       minutes = date.getUTCMinutes();
 
-  let a = (hours % 12) / 12,
-      b = minutes / 60;
+  let a = minutes / 60,
+      b = (hours % 12 + a) / 12
 
   let result = Math.abs(a - b);
 

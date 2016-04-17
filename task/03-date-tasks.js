@@ -97,7 +97,7 @@ function timeSpanToString(startDate, endDate) {
 
     if (d > 0) n = (new Array(d)).fill('0').join('') + n;
 
-    return 0;
+    return n;
   }; }
 
   return `${diffs.slice(0, 3).map(f(2)).join(':')}.${f(3)(diffs[3])}`;

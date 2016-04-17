@@ -125,9 +125,8 @@ describe('03-date-tasks', function() {
                 expected: 0.4799655442984406
             }
         ].forEach(data => {
-            assert.equal(
-                tasks.angleBetweenClockHands(new Date(data.date)),
-                data.expected,
+            assert(
+                Math.abs(tasks.angleBetweenClockHands(new Date(data.date)) - data.expected) < 0.000000000000001,
                 `Incorrect result for angleBetweenClockHands(${new Date(data.date).toUTCString()}):`   
             );
         });

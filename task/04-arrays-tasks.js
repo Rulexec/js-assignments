@@ -237,7 +237,7 @@ function toArrayOfSquares(arr) {
 function getMovingSum(arr) {
   let result = [];
 
-  arr.reduce((acc, x) => (result.push(acc + x), x), 0);
+  arr.reduce((acc, x) => (result.push(acc + x), acc + x), 0);
 
   return result;
 }
@@ -291,8 +291,10 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
+  // TODO: not optimal
+  return arr.sort((a, b) => b - a).slice(0, 3);
   // TODO: if here a lot items required, then use heap instead of list
-  let result = arr.slice(0, 3).sort((a, b) => b - a);
+  /*let result = arr.slice(0, 3).sort((a, b) => b - a);
 
   // FIXME: to rewrite
   arr.slice(3).forEach(x => {
@@ -310,7 +312,7 @@ function get3TopItems(arr) {
     let tmp = result[i];
     result[i] = result[j];
     result[j] = tmp;
-  }
+  }*/
 }
  
  

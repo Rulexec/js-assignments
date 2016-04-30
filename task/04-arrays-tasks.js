@@ -23,7 +23,7 @@
  *    [0, 1, 2, 3, 4, 5], 5    => 5
  */
 function findElement(arr, value) {
-  return arr.indexof(value);
+  return arr.indexOf(value);
 }
 
 /**
@@ -237,7 +237,7 @@ function toArrayOfSquares(arr) {
 function getMovingSum(arr) {
   let result = [];
 
-  arr.reduce((acc, x) => result.push(acc + x), x, 0);
+  arr.reduce((acc, x) => (result.push(acc + x), x), 0);
 
   return result;
 }
@@ -296,12 +296,11 @@ function get3TopItems(arr) {
 
   // FIXME: to rewrite
   arr.slice(3).forEach(x => {
-    if (result[result.length - 1] < x) {
-      result[result.length - 1] = x;
-      for (let i = 1; i >= 0; i--) {
-        let y = result[i];
-        if (y < x) swap(i, i + 1);
-      }
+    if (result[2] < x) {
+      result[2] = x;
+
+      if (result[1] < x) swap(1, 2);
+      if (result[0] < x) swap(0, 1);
     }
   });
   
@@ -346,7 +345,7 @@ function getPositivesCount(arr) {
  */
 function sortDigitNamesByNumericOrder(arr) {
   const digits = ['ze', 'on', 'tw', 'th', 'fo', 'fi', 'si', 'se', 'ei', 'ni'
-  ].reduce((acc, x, i) => (acc[x] = i), acc, {});
+  ].reduce((acc, x, i) => ((acc[x] = i), acc), {});
 
   return arr.sort((a, b) => digits[a.slice(0, 2)] - digits[b.slice(0, 2)]);
 }
@@ -398,7 +397,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-  return arr.reduce((acc, x) => acc + (x === item));
+  return arr.reduce((acc, x) => acc + (x === item), 0);
 }
 
 /**

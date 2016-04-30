@@ -551,7 +551,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return arr.reduce((acc, x) => acc.concat(childrenSelector(x)));
+  return arr.reduce((acc, x) => acc.concat(childrenSelector(x)), []);
 }
 
 
@@ -591,9 +591,9 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-  return arr.slice(0, (arr.length / 2) | 0
+  return arr.slice(-((arr.length / 2) | 0)
     ).concat(arr.slice(((arr.length / 2) | 0) + 1, arr.length % 2)
-    ).concat(arr.slice(-((arr.length / 2) | 0)));
+    ).concat(arr.slice(0, (arr.length / 2) | 0));
 }
 
 

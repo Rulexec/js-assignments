@@ -595,7 +595,7 @@ function swapHeadAndTail(arr) {
 
   let mid = (arr.length / 2) | 0;
 
-  return arr.slice(-mid)
+  return arr.slice(-mid
     ).concat(arr.slice(mid, mid + arr.length % 2)
     ).concat(arr.slice(0, mid));
 }

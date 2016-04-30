@@ -293,26 +293,6 @@ function propagateItemsByPositionIndex(arr) {
 function get3TopItems(arr) {
   // TODO: not optimal
   return arr.sort((a, b) => b - a).slice(0, 3);
-  // TODO: if here a lot items required, then use heap instead of list
-  /*let result = arr.slice(0, 3).sort((a, b) => b - a);
-
-  // FIXME: to rewrite
-  arr.slice(3).forEach(x => {
-    if (result[2] < x) {
-      result[2] = x;
-
-      if (result[1] < x) swap(1, 2);
-      if (result[0] < x) swap(0, 1);
-    }
-  });
-  
-  return result;
-
-  function swap(i, j) {
-    let tmp = result[i];
-    result[i] = result[j];
-    result[j] = tmp;
-  }*/
 }
  
  

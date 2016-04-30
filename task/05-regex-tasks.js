@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  return /^[ps][^ea]|re/;
+  return /^.[ipl]|re/;
 }
 
 
@@ -72,7 +72,8 @@ function getRegexForPitSpot() {
  * @return {RegExp}
  */
 function getRegexForIPv4() {
-  return /^(?:1?\d{1,2}|2(?:[0-4]\d|5[0-5])).(?:1?\d{1,2}|2(?:[0-4]\d|5[0-5])).(?:1?\d{1,2}|2(?:[0-4]\d|5[0-5])).(?:1?\d{1,2}|2(?:[0-4]\d|5[0-5]))$/;
+  let d = '(?:0?\d?\d|1\d\d|2[0-4]\d|25[0-5])'
+  return new RegExp(`${d}\\.${d}\\.${d}\\.${d}`);
 }
 
 

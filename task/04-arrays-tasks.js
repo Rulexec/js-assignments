@@ -525,7 +525,7 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-  return array.reduce((acc, x) = {
+  return array.reduce((acc, x) => {
     let key = keySelector(x),
         value = valueSelector(x);
 

@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  return /^.[ipl]|re/;
+  return /^[psr][ipl]/;
 }
 
 

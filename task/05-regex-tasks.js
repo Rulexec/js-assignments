@@ -73,7 +73,7 @@ function getRegexForPitSpot() {
  */
 function getRegexForIPv4() {
   let d = '(?:0?\d?\d|1\d\d|2[0-4]\d|25[0-5])'
-  return new RegExp(`${d}\\.${d}\\.${d}\\.${d}`);
+  return new RegExp(`^${d}\\.${d}\\.${d}\\.${d}\$`);
 }
 
 

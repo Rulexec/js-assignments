@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  return /^[ps][^a]|re/;
+  return /^[sr]|pi/;
 }
 
 

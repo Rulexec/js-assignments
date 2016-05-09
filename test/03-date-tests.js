@@ -13,12 +13,12 @@ describe('03-date-tasks', function() {
         );
 
         assert.equal(
-            1453816082000,
+            Date.UTC(2016, 0, 26, 13, 48, 2, 0),
             tasks.parseDataFromRfc2822('Tue, 26 Jan 2016 13:48:02 GMT').valueOf()
         );
 
         assert.equal(
-            895373940000,
+            Date.UTC(1998, 4, 17, 3-1, 0, 0, 0),
             tasks.parseDataFromRfc2822('Sun, 17 May 1998 03:00:00 GMT+01').valueOf()
         );
     });

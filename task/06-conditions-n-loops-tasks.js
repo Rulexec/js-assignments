@@ -300,7 +300,21 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+  let digits = toDigitsArray(ccn);
+
+  let sum = digits.map((x, i) => {
+    if (i % 2 === digits.length % 2) {
+      return getDigitalRoot(x * 2);
+    } else {
+      return x;
+    }
+  }).reduce((a, b) => a + b);
+
+  return sum % 10 === 0;
+
+  function toDigitsArray(str) {
+    return str.split('').map(x => parseInt(x, 10));
+  }
 }
 
 
@@ -319,7 +333,18 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+  while (num > 9) {
+    let sum = 0;
+
+    while (num > 0) {
+      sum += num % 10;
+      num = (num / 10) | 0;
+    }
+
+    num = sum;
+  }
+
+  return num;
 }
 
 
@@ -345,7 +370,23 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+  let stack = [];
+
+  const OPEN_LIST = ['[', '(', '{', '<'],
+        CLOSE_LIST = [']', ')', '}', '>'],
+        OPEN_TO_CLOSE = new Map(OPEN_LIST.map((x, i) => [x, CLOSE_LIST[i]]));
+
+  for (let c of str) {
+    let openBrace = OPEN_TO_CLOSE.get(c);
+
+    if (openBrace) {
+      stack.push(openBrace);
+    } else {
+      if (stack.pop() !== c) return false;
+    }
+  }
+
+  return stack.length === 0;
 }
 
 
